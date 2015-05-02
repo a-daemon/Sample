@@ -1,0 +1,51 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.homeaway.test</groupId>
+  <artifactId>HomeAwayTests</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <name>HomeAwayTests</name>
+  <description>Tests for HomeAway</description>
+  
+  <properties>
+  	<testGroup>api-gov</testGroup>
+  	<compileSource>1.7</compileSource>
+  	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  	<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+  	<testUtilities.version>${project.version}</testUtilities.version>
+  	<surefire.version>2.18.1</surefire.version>
+  </properties>
+  
+  <build>
+  	<plugins>
+  		<plugin>
+  			<groupId>org.apache.maven.plugins</groupId>
+  			<artifactId>maven-compiler-plugin</artifactId>
+  			<version>3.3</version>
+  			<configuration>
+  				<source>${compileSource}</source>
+  				<target>${compileSource}</target>
+  			</configuration>
+  		</plugin>
+  		<plugin>
+  			<groupId>org.apache.maven.plugins</groupId>
+  			<artifactId>maven-surefire-plugin</artifactId>
+  			<version>${surefire.version}</version>
+  			<configuration>
+  				<groups>${testGroup}</groups>
+  				<testFailureIgnore>true</testFailureIgnore>
+  				<includes>
+  					<include>**/*Test.java</include>
+  				</includes>
+  			</configuration>
+  		</plugin>
+  	</plugins>
+  </build>
+  
+  <dependencies>
+  	<dependency>
+  		<groupId>com.homeaway.test.utilities</groupId>
+  		<artifactId>HomeAwayUtilities</artifactId>
+  		<version>${testUtilities.version}</version>
+  	</dependency>
+  </dependencies>
+</project>
