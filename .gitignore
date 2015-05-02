@@ -1,0 +1,8 @@
+**/target/*
+**/test-output/*
+**/*.class
+.metadata/*
+**/.settings/*
+RemoteSystemsTempFiles/*
+**/.classpath
+**/.project
