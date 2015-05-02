@@ -1,0 +1,78 @@
+To execute the tests of Exercise Part 1, you could do one of the following:
+
+Option #1: Run from an IDE
+a. Import the HomeAwayUtilities and HomeAwayTests projects into your IDE of choice (they are maven projects)
+b. Right-Click on the DemoQAStoreTest class, and choose "Run As -> TestNG Test".
+
+The test will login with my user account "dhunt" and password.  The test assumes the account profile has already been configured.
+
+
+
+Option #2: Run from the command line (this assumes you have a mvn environment configured)
+a.  Perform a "mvn install" of the HomeAwayUtilities project.
+b.  CD into the HomeAwayTests project.  On the command line, type the following:  "mvn clean test -DtestGroup=demo-store"
+
+
+To run these tests, you must have JDK7 installed.
+
+
+To execute the tests of Exercise Part 2, you could do one of the following:
+
+Option #1: Run from an IDE
+a. Import the HomeAwayUtilities and HomeAwayTests projects into your IDE of choice (they are maven projects)
+b. Right-Click on the RestTest class, and choose "Run As -> TestNG Test".
+
+The test will use the end point and API key info contained in the config.properties file in the HomeAwayTests project.
+
+
+
+Option #2: Run from the command line (this assumes you have a mvn environment configured)
+a.  Perform a "mvn install" of the HomeAwayUtilities project.
+b.  CD into the HomeAwayTests project.  On the command line, type the following:  "mvn clean test"
+
+
+To run these tests, you must have JDK7 installed.
+
+
+Part II: White-Box Testing Exercise
+
+3 Logic Bugs (plus another issue):
+
+1.  When there are successful messages, we don't attempt to add a recipient. This is done only to an empty list.
+2.  Adding current User instead of recipient to addRecipient().
+3.  Message.getAddRecipientAllowed(User) does not check the message object passed in.  Instead, it calls a static function.
+4.  No null check on User objects or messages which can lead to a NPE.
+
+To catch the bugs:
+
+1.  In an automated test, pass a null instead of an actual User object or messages list.
+2.  In an automated test, pass different user objects for current and recipient and set AddRecipientAllowed to false.
+3.  In an automated test, pass different user objects for current and recipient and set AddRecipientAllowed and PermissionToModifyRecipients to true.
+
+Part III – Specification Review Exercise
+
+1.  What are the other states besides a "writable" user?
+2.  How are these states encountered or assigned?
+3.  What should the experience be if the user isn't a writable user?
+4.  Are non-writable users prevented from seeing the "My Profile" link or is it read-only?
+5.  What should the experience be if I attempt to edit another user's profile?
+6.  If there is an error message, what should the error message say?
+7.  If I'm a CSR, can I edit another CSR's profile?  If not, what's the user experience?
+8.  Is the edit profile and change password flow different today?
+9.  If the passwords don't match, should we disable the Save button?
+10.  Should we provide real-time update as user types password they know they've met all the criteria?
+11.  When you say the behavior should be the same for edit profile and change password, do you mean exactly?
+12. Do the different user states apply when changing a password?  
+13. Can other users see the change password option for other users?
+14. Can a CSR change another user's password?
+15. Can a CSr change another CSR's password? 
+
+Top 3-5 questions:
+
+1.  Are non-writable users prevented from seeing the "My Profile" link? Or is it read-only?
+2.  What should the experience be if the user isn't a writable user?
+3.  If I'm a CSR, can I edit another CSR's profile?  If not, what's the user experience?
+4. Can a CSR change another user's (including CSR's)password?
+5.  If I'm a CSR, can I edit another CSR's profile?
+
+I selected these questions because they most directly deal with security and UX concerns.  As an enduser, this would have a big influence on how I interact with the system and how it's designed.  I would expect the PM to either provide more detailed guidence on how they see the system behaviing or ask the team for their opinitons on what's best.  If the PM doesn't have a strong opinion either way, ask if they are comfortable deferring to the team to make those decisions.  The answers to the questions could expand the work for the project but most importantly determine priority of stories.  Making pages read-only could invole more work as opposed to making pages non-accessible for non-authorized operations.
